@@ -23,6 +23,7 @@ To add a screenshot, create an `assets/images` folder in your repository and upl
 
 Tutorials followed: 
 - https://www.youtube.com/watch?v=riDzcEQbX6k
+- https://www.youtube.com/watch?v=AFTvxsVv52k&t=1582s
 
 further research done:
 - https://www.freecodecamp.org/news/javascript-if-else-and-if-then-js-conditional-statements/

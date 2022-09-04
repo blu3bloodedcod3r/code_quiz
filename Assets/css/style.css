@@ -83,3 +83,14 @@ body.wrong {
 .hide {
     display: none;
 }
+
+.quiz-finish {
+    display: none;
+}
+
+.recorded_scores {
+    display: block;
+    color: orange;
+    justify-content: flex-end;
+    align-items: top-right;
+}

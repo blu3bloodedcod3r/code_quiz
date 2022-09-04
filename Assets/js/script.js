@@ -51,7 +51,7 @@ function selectAnswer(e) {
     const chosenButton = e.target
     const correct = chosenButton.dataset.correct
     setStatusClass(document.body, correct)
-    Array.from(answerButtons.childern).forEach(button => {
+    Array.from(answer).forEach(button => {
         setStatusClass(button, button.dataset.correct)
     })
     (shuffleQuestions.length > currentQuestionIndex + 1) ? nextButton.classList.remove('hide') : startButton.innerText = 'Restart' && (shuffleQuestions.length > currentQuestionIndex + 1) ? nextButton.classList.remove('hide') : startButton.classList.remove('hide')
@@ -75,29 +75,27 @@ const questions = [
     {
         question: "Who invented JavaScript?",
         answers: {
-            a: "Douglas Crockford",
-            b: "Sheryl Sandberg",
-            c: "Brendan Eich"
+            {text: "Douglas Crockford", correct: false},
+            {text: "Sheryl Sandberg", correct: false},
+            {text: "Brendan Eich", correct: true}
+        }
     },
-        correct: "c"
-  },
   {
         question: "Which one of these is a JavaScript package manager?",
         answers: {
-        a: "Node.js",
-        b: "TypeScript",
-        c: "npm"
+            { text: "Node.js", correct: false},
+            { text: "TypeScript", correct: false},
+            { text: "npm", correct: true},
+        }
     },
-        correct: "c"
-  },
   {
         question: "Which tool can you use to ensure code quality?",
         answers: {
-        a: "Angular",
-        b: "jQuery",
-        c: "RequireJS",
-        d: "ESLint"
-    },
-        correct: "d"
-    }
+            { text: "Angular", correct: false},
+            { text: "jQuery", correct: false},
+            { text: "RequireJS", correct: false},
+            { text: "ESLint", correct: true}
+     
+      
+    }}
 ]

@@ -1,10 +1,29 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <charset></charset>
+        <meta charset = "utf=8"/>
+        <link href="assets/css/style.css" rel="stylesheet">
+        <title>Quiz time</title>
     </head>
     <body>
 
-        <script>"assets.js.script.js"</script>
+        <section class="quiz-container">
+            <div id="question-cont" class="hide">
+                <section id="question">Question</section>
+                <section id="answ-btn" class="btn-grid">
+                    <button class="btn">Answer 1</button>
+                    <button class="btn">Answer 2</button>
+                    <button class="btn">Answer 3</button>
+                    <button class="btn">Answer 4</button>
+
+                </section>
+            </div>
+            <div class="'controls"></div>
+            <button id="start" class="start">Start</button>
+            <button id="next" class="next hide">Next</button>
+        </section>
+        <button id="submit">Get Results</button>
+        <section id="results"></section>
+        <script src="assets/js/script.js"></script>
     </body>
 </html>

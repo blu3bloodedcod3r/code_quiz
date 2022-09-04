@@ -8,8 +8,8 @@ let shuffleQuestions, currentQuestionIndex
 
 startButton.addEventListener('click', startGame);
 nextButton.addEventListener('click', ()=> {
-    currentQuestionIndex++;
-    setNextQuestion();
+    currentQuestionIndex++
+    setNextQuestion()
 });
 
 function startGame() {
@@ -26,13 +26,13 @@ function setNextQuestion() {
 };
 
 function showQuestion(question) {
-    questionEl.innerText = question.question;
+    questionEl.innerText = question.question
     question.answers.forEach(answer => {
         const button = document.createElement('button');
         button.innerText = answer.text;
         button.classList.add('btn');
         if (answer.correct) {
-            button.sataset.correct = answer.correct;
+            button.dataset.correct = answer.correct
         };
         button.addEventListener('click', selectAnswer);
         answerButtons.appendChild(button);
@@ -47,15 +47,14 @@ function resetState() {
     };
 };
 
-function selectAnswer() {
-    const selectedButton = e.target
-    const correct = selectedButton.dataset.correct
+function selectAnswer(e) {
+    const chosenButton = e.target
+    const correct = chosenButton.dataset.correct
     setStatusClass(document.body, correct)
     Array.from(answerButtons.childern).forEach(button => {
         setStatusClass(button, button.dataset.correct)
     })
-    (shuffleQuestions.length > currentQuestionIndex + 1) ? nextButton.classList.remove('hide') : startButton.innerText ="Restart"; startButton.classList.remove
-    nextButton.classList.remove('hide')
+    (shuffleQuestions.length > currentQuestionIndex + 1) ? nextButton.classList.remove('hide') : startButton.innerText = 'Restart' && (shuffleQuestions.length > currentQuestionIndex + 1) ? nextButton.classList.remove('hide') : startButton.classList.remove('hide')
 }
 
 function setStatusClass(element, correct) {
@@ -79,22 +78,22 @@ const questions = [
         correctAnswer: "c"
   },
   {
-    question: "Which one of these is a JavaScript package manager?",
-    answers: {
-      a: "Node.js",
-      b: "TypeScript",
-      c: "npm"
+        question: "Which one of these is a JavaScript package manager?",
+        answers: {
+        a: "Node.js",
+        b: "TypeScript",
+        c: "npm"
     },
-    correctAnswer: "c"
+        correctAnswer: "c"
   },
   {
-    question: "Which tool can you use to ensure code quality?",
-    answers: {
-      a: "Angular",
-      b: "jQuery",
-      c: "RequireJS",
-      d: "ESLint"
+        question: "Which tool can you use to ensure code quality?",
+        answers: {
+        a: "Angular",
+        b: "jQuery",
+        c: "RequireJS",
+        d: "ESLint"
     },
-    correctAnswer: "d"
+        correctAnswer: "d"
     }
 ]

@@ -3,13 +3,13 @@
 }
 
 :root {
-    --hue-neutral: 200
+    --hue-neutral: 200;
     --hue-wrong: 0;
     --huw-correct: 145;
 }
 
 body {
-    --hu: var(--hue-neutral)
+    --hue: var(--hue-neutral);
     padding: 0;
     margin:0;
     display: flex;
@@ -29,7 +29,7 @@ body.wrong {
 }
 
 .quiz-container {
-    width: 800px
+    width: 800px;
     max-width: 80%;
     background-color: lightblue;
     border-radius: 5px;
@@ -64,11 +64,11 @@ body.wrong {
     color: black
 }
 
-.btn-wrong {
+.btn.wrong {
     --hue: var(--hue-wrong);
 }
 
-.start-btn, .next-btn {
+.start-button, .next-button {
     font-size: 1.5rem;
     font-weight: bold;
     padding: 10px 15px;
@@ -78,4 +78,8 @@ body.wrong {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.hide {
+    display: none;
 }

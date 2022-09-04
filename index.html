@@ -2,11 +2,11 @@
 <html>
     <head>
         <meta charset = "utf=8"/>
+        <meta name="viewport" content="width-device-width, initial-scale=1.0">
         <link href="assets/css/style.css" rel="stylesheet">
         <title>Quiz time</title>
     </head>
     <body>
-
         <section class="quiz-container">
             <div id="question-cont" class="hide">
                 <section id="question">Question</section>
@@ -15,15 +15,14 @@
                     <button class="btn">Answer 2</button>
                     <button class="btn">Answer 3</button>
                     <button class="btn">Answer 4</button>
-
                 </section>
             </div>
-            <div class="'controls"></div>
-            <button id="start" class="start">Start</button>
-            <button id="next" class="next hide">Next</button>
+            <div class="controls">
+                <button id="start-button" class="start-button btn">Start</button>
+                <button id="next-button" class="next-button btn hide">Next</button>
+            </div>
         </section>
-        <button id="submit">Get Results</button>
-        <section id="results"></section>
-        <script src="assets/js/script.js"></script>
+
+        <script defer src="assets/js/script.js"></script>
     </body>
 </html>

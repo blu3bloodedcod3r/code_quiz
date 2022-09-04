@@ -24,10 +24,13 @@ To add a screenshot, create an `assets/images` folder in your repository and upl
 Tutorials followed: 
 - https://www.youtube.com/watch?v=riDzcEQbX6k
 
-
 further research done:
 - https://www.freecodecamp.org/news/javascript-if-else-and-if-then-js-conditional-statements/
-- 
+
+-https://www.codingdeft.com/posts/javascript-typeerror-foreach-is-not-a-function/
+
+Got questions for quiz here: 
+- https://www.sitepoint.com/simple-javascript-quiz/
 
 ## License
 

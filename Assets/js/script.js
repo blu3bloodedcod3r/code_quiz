@@ -17,25 +17,25 @@ function startGame() {
     shuffleQuestions = questions.sort(() => Math.random() - .5);
     currentQuestionIndex = 0;
     questionContainer.classList.remove('hide');
-    setNextQuestion();
+    setNextQuestion()
 };
 
 function setNextQuestion() {
     resetState();
-    showQuestion(shuffleQuestions[currentQuestionIndex]);
+    showQuestion(shuffleQuestions[currentQuestionIndex])
 };
 
 function showQuestion(question) {
     questionEl.innerText = question.question
-    question.answers.forEach(answer => {
-        const button = document.createElement('button');
+    Array.from(questions).forEach(answer => {
+        const button = document.createElement('button')
         button.innerText = answer.text;
         button.classList.add('btn');
         if (answer.correct) {
             button.dataset.correct = answer.correct
-        };
-        button.addEventListener('click', selectAnswer);
-        answerButtons.appendChild(button);
+        }
+        button.addEventListener('click', selectAnswer)
+        answerButtons.appendChild(button)
     });
 };
 
@@ -59,7 +59,11 @@ function selectAnswer(e) {
 
 function setStatusClass(element, correct) {
     clearStatusClass(element)
-    (correct) ? element.classList.add('correct') : element.classList.add('wrong')
+    if (correct) {
+        element.classList.add('correct')
+    } else {
+        element.classList.add('wrong')
+    }
 }
 
 function clearStatusClass (element) {
@@ -75,7 +79,7 @@ const questions = [
             b: "Sheryl Sandberg",
             c: "Brendan Eich"
     },
-        correctAnswer: "c"
+        correct: "c"
   },
   {
         question: "Which one of these is a JavaScript package manager?",
@@ -84,7 +88,7 @@ const questions = [
         b: "TypeScript",
         c: "npm"
     },
-        correctAnswer: "c"
+        correct: "c"
   },
   {
         question: "Which tool can you use to ensure code quality?",
@@ -94,6 +98,6 @@ const questions = [
         c: "RequireJS",
         d: "ESLint"
     },
-        correctAnswer: "d"
+        correct: "d"
     }
 ]

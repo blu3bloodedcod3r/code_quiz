@@ -25,7 +25,7 @@ body.correct {
 }
 
 body.wrong {
-    --hue: (var--hue-wrong);
+    --hue: var(--hue-wrong);
 }
 
 .quiz-container {
@@ -46,17 +46,16 @@ body.wrong {
 
 .btn {
     --hue: var(--hue-neutral);
-    border: 2px dotted hsl((var--hue), 100%, 40%);
+    border: 2px dotted hsl(var(--hue), 100%, 30%);
     background-color: hsl(var(--hue), 100% 50%);
-    border-radius:  5px;
+    border-radius: 5px;
     padding: 5px 10px;
     color: white;
     outline: none;
-
 }
 
 .btn:hover {
-    border-color: blue;
+    border-color: orange;
 }
 
 .btn.correct {
@@ -72,7 +71,6 @@ body.wrong {
     font-size: 1.5rem;
     font-weight: bold;
     padding: 10px 15px;
-    position: realative;
 }
 
 .controls {

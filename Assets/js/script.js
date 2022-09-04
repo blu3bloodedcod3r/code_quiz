@@ -1,8 +1,8 @@
-const startButton = document.getElementById('start-button');
-const nextButton = document.getElementById('next-button');
-const questionContainer = document.getElementById("question-cont");
-const questionEl = document.getElementById('question');
-const answerButtons = document.getElementById('answ-btn');
+const startButton = document.getElementById('start-button')
+const nextButton = document.getElementById('next-button')
+const questionContainer = document.getElementById('question-cont')
+const questionEl = document.getElementById('question')
+const answerButtons = document.getElementById('answ-btn')
 const scores = document.getElementById('recorded_scores')
 
 let shuffleQuestions, currentQuestionIndex
@@ -14,16 +14,15 @@ nextButton.addEventListener('click', ()=> {
 });
 
 function startGame() {
-    timerStart()
-    startButton.classList.add('hide');
-    shuffleQuestions = questions.sort(() => Math.random() - .5);
-    currentQuestionIndex = 0;
-    questionContainer.classList.remove('hide');
+    startButton.classList.add('hide')
+    shuffleQuestions = questions.sort(() => Math.random() - .5)
+    currentQuestionIndex = 0
+    questionContainer.classList.remove('hide')
     setNextQuestion()
 };
 
 function timerStart(){
-    startButton('clicked', startGame(), 30000)
+    startButton('clicked', setNextQuestion(), 30000)
 }
 
 function setNextQuestion() {
@@ -87,28 +86,27 @@ function scoreCorrect() {
 const questions = [
     {
         question: "Who invented JavaScript?",
-        answers: {
-            (text: "Douglas Crockford", correct: false),
+        answers: [
+            {text: "Douglas Crockford", correct: false},
             {text: "Sheryl Sandberg", correct: false},
             {text: "Brendan Eich", correct: true}
-        }
+        ]
     },
   {
         question: "Which one of these is a JavaScript package manager?",
-        answers: {
+        answers: [
             { text: "Node.js", correct: false},
             { text: "TypeScript", correct: false},
             { text: "npm", correct: true},
-        }
+        ]
     },
   {
         question: "Which tool can you use to ensure code quality?",
-        answers: {
+        answers: [
             { text: "Angular", correct: false},
             { text: "jQuery", correct: false},
             { text: "RequireJS", correct: false},
             { text: "ESLint", correct: true}
-     
-      
-    }}
+      ]
+    }
 ]

@@ -3,6 +3,7 @@ const nextButton = document.getElementById('next-button');
 const questionContainer = document.getElementById("question-cont");
 const questionEl = document.getElementById('question');
 const answerButtons = document.getElementById('answ-btn');
+const scores = document.getElementById('recorded_scores')
 
 let shuffleQuestions, currentQuestionIndex
 
@@ -13,12 +14,17 @@ nextButton.addEventListener('click', ()=> {
 });
 
 function startGame() {
+    timerStart()
     startButton.classList.add('hide');
     shuffleQuestions = questions.sort(() => Math.random() - .5);
     currentQuestionIndex = 0;
     questionContainer.classList.remove('hide');
     setNextQuestion()
 };
+
+function timerStart(){
+    startButton('clicked', startGame(), 30000)
+}
 
 function setNextQuestion() {
     resetState();
@@ -71,11 +77,18 @@ function clearStatusClass (element) {
     element.classList.remove('wrong')
 }
 
+function scoreCorrect() {
+    scored = 0
+    for (correct in answers) {
+        scored++
+    }
+}
+
 const questions = [
     {
         question: "Who invented JavaScript?",
         answers: {
-            {text: "Douglas Crockford", correct: false},
+            (text: "Douglas Crockford", correct: false),
             {text: "Sheryl Sandberg", correct: false},
             {text: "Brendan Eich", correct: true}
         }

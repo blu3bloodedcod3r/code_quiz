@@ -72,6 +72,7 @@ body.wrong {
     font-size: 1.5rem;
     font-weight: bold;
     padding: 10px 15px;
+    position: realative;
 }
 
 .controls {
@@ -92,5 +93,13 @@ body.wrong {
     display: block;
     color: orange;
     justify-content: flex-end;
-    align-items: top-right;
+    align-items: top;
+}
+
+.timer .time-sec{
+    display:flex;
+    justify-content: flex-end;
+    align-items: center;
+    color: black;
+    font-weight: bold;
 }

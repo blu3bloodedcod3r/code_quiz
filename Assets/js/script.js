@@ -3,9 +3,11 @@ const nextButton = document.getElementById('next-button')
 const questionContainer = document.getElementById('question-cont')
 const questionEl = document.getElementById('question')
 const answerButtons = document.getElementById('answ-btn')
-const scores = document.getElementById('recorded_scores')
+const scorePoints = 100
+const maxQuestions = 3
 
 let shuffleQuestions, currentQuestionIndex
+let score = 0
 
 startButton.addEventListener('click', startGame);
 nextButton.addEventListener('click', () => {
@@ -14,16 +16,13 @@ nextButton.addEventListener('click', () => {
 })
 
 function startGame() {
+    score = 0
     startButton.classList.add('hide')
     shuffleQuestions = questions.sort(() => Math.random() - .5)
     currentQuestionIndex = 0
     questionContainer.classList.remove('hide')
     setNextQuestion()
 };
-
-function timerStart(){
-    startButton('clicked', setNextQuestion(), 30000)
-}
 
 function setNextQuestion() {
     resetState();
@@ -38,6 +37,7 @@ function showQuestion(question) {
         button.classList.add('btn');
         if (answer.correct) {
             button.dataset.correct = answer.correct
+            score++
         }
         button.addEventListener('click', selectAnswer)
         answerButtons.appendChild(button)
@@ -56,13 +56,13 @@ function selectAnswer(e) {
     const chosenButton = e.target
     const correct = chosenButton.dataset.correct
     setStatusClass(document.body, correct)
-    Array.from(answers).forEach(button => {
+    Array.from(answerButtons).forEach(button => {
         setStatusClass(button, button.dataset.correct)
     })
     if (shuffleQuestions.length > currentQuestionIndex + 1) {
         nextButton.classList.remove('hide') 
     } else {
-        startButton.innerText = 'Restart'
+        startButton.innerText = 'Submit'
         startButton.classList.remove('hide')
     }
 }
@@ -76,20 +76,20 @@ function setStatusClass(element, correct) {
     }
 }
 
-
 function clearStatusClass(element) {
     element.classList.remove('correct')
     element.classList.remove('wrong')
 }
 
 function scoreCorrect() {
-    scored = 0
+    score = 0
     for (correct in answers) {
-        scored++
+        score++
+        localStorage.setItem('score-text')
     }
 }
 
-const questions = [
+let questions = [
     {
         question: "Who invented JavaScript?",
         answers: [

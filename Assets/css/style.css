@@ -20,6 +20,11 @@ body {
     background-color: hsl(var(--hue), 100%, 20%);
 }
 
+nav {
+    color: orange;
+    align-items: flex-start;
+}
+
 body.correct {
     --hue: var(--hue-correct);
 }
@@ -29,7 +34,7 @@ body.wrong {
 }
 
 .quiz-container {
-    width: 800px;
+    width: 600px;
     max-width: 80%;
     background-color: lightblue;
     border-radius: 5px;
@@ -67,10 +72,11 @@ body.wrong {
     --hue: var(--hue-wrong);
 }
 
-.start-button, .next-button {
+.start-button, .next-button, #quiz-fin {
     font-size: 1.5rem;
     font-weight: bold;
-    padding: 10px 15px;
+    padding: 10px 10px;
+    align-items: center;
 }
 
 .controls {
@@ -85,6 +91,15 @@ body.wrong {
 
 .quiz-finish {
     display: none;
+    justify-content: space-around;
+    align-items: start;
+    width: 100px;
+    height: 30px;
+    color: orange;
+    font-weight: bold;
+    border-radius: 5px;
+    padding 0 8px;
+    background-color: aliceblue;
 }
 
 .recorded_scores {
@@ -94,10 +109,21 @@ body.wrong {
     align-items: top;
 }
 
-.timer .time-sec{
+.timer {
     display:flex;
-    justify-content: flex-end;
-    align-items: center;
-    color: black;
+    justify-content: space-around;
+    align-items: start;
+    width: 100px;
+    height: 30px;
+    color: orange;
     font-weight: bold;
+    border-radius: 5px;
+    padding 0 8px;
+    background-color: aliceblue;
+}
+
+.time-text {
+    font-weight: 300;
+    font-size: 15px;
+    user-select: none;
 }

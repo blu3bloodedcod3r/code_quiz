@@ -6,18 +6,15 @@
         <link href="Assets/css/style.css" rel="stylesheet">
         <title>Quiz time</title>
     </head>
+
     <body>
         <nav>
-            <section class="recorded_scores">
-                <h3>Recorded Scores:</h3>
-                <ol>
-    
-                </ol>
-                <header>JavaScript Quiz</header>
-                <p class="timer">Timer: </p> 
-                <p class="time-sec">30</p>
-            </section>
-        </nav>
+            <header>JavaScript Quiz</header>
+            <div class="timer">
+                <div class="time-text">Time Left: 30</div>
+            </div>     
+        </nav> 
+
         <section class="quiz-container">
             <div id="question-cont" class="hide">
                 <div id="question">Question</div>
@@ -28,20 +25,21 @@
                     <button class="btn">Answer 4</button>
                 </section>
             </div>
-        
-            <div class="controls">
-                <button id="start-button" class="start-button btn">Start</button>
-                <button id="next-button" class="next-button btn hide">Next</button>
-            </div>
         </section>
 
-        <section class = "quiz-finish">
+    
+        <div class="controls">
+            <button id="start-button" class="start-button btn">Start</button>
+            <button id="next-button" class="next-button btn hide">Next</button>
+        </div>
+    
+        <section class="quiz-finish">
             <h2>Quiz Done!</h2>
-            <p>Your Score: 00</p>
+            <div class="score-text">Your Score: 00</div>
             <div>
                 <label for ="">Enter Initials:</label>
                 <input type="text">
-                <button>Submit</button>
+                    <button id="quiz-fin" class="btn">Submit</button>
             </div>
         </section>
         

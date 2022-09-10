@@ -23,6 +23,7 @@ function startGame() {
     shuffleQuestions = questions.sort(() => Math.random() - .5)
     questionContainer.classList.remove('hide')
     setNextQuestion()
+    timer();
 };
 
 function setNextQuestion() {
@@ -58,11 +59,12 @@ function timer() {
             document.querySelector('.time-text').innerHTML = "Time Left: " + timeLeft
 
             if (timeLeft === 0) {
-                clearInterval(timer);
+                clearInterval(timeLeft);
                 localStorage.setItem(".saveScore").innerHTML = 'Enter your initals'
                 return quizFinish && saveScore
             };      
     }, 1000)
+    setTimeOut(timeInterval)
 }
 
 function resetState() {

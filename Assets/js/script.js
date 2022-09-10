@@ -49,6 +49,22 @@ function showQuestion(question) {
     });
 };
 
+function timer() {
+    timeLeft = 30;
+
+        var timeInterval = setInterval(function() {
+            timeLeft--;
+            console.log(timeLeft)
+            document.querySelector('.time-text').innerHTML = "Time Left: " + timeLeft
+
+            if (timeLeft === 0) {
+                clearInterval(timer);
+                localStorage.setItem(".saveScore").innerHTML = 'Enter your initals'
+                return quizFinish && saveScore
+            };      
+    }, 1000)
+}
+
 function resetState() {
     clearStatusClass(document.body)
     nextButton.classList.add('hide')

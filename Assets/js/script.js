@@ -5,13 +5,14 @@ const questionEl = document.getElementById('question');
 const answerButtons = document.getElementById('answ-btn');
 const quizFinish = document.getElementsByClassName("quiz-finish");
 const saveScore = document.getElementsByClassName("saveScore");
+const quizFinBtn = document.getElementById('quiz-finBtn')
 
-
+let score = 0;
 let shuffleQuestions, currentQuestionIndex;
 
 startButton.addEventListener('click', startGame);
 nextButton.addEventListener('click', () => {
-    currentQuestionIndex++
+    currentQuestionIndex++;
     setNextQuestion()
 });
 
@@ -27,16 +28,14 @@ function timer() {
         clearInterval(timer);
     }; 
     startGame();
-}
+};
 
 function startGame() {
-    
-    //console.log('started')
     startButton.classList.add('hide')
     questionContainer.classList.remove('hide')
-    setNextQuestion();
     currentQuestionIndex = 0
     shuffleQuestions = questions.sort(() => Math.random() - .5)
+    setNextQuestion();
     nextButton.classList.remove('hide')
     showQuestion();
     timer();
@@ -46,8 +45,6 @@ function setNextQuestion() {
     resetState();
     showQuestion(shuffleQuestions[currentQuestionIndex])
 };
-
-let score = 0;
 
 function showQuestion(question) {
     questionEl.innerText = question.question
@@ -62,7 +59,8 @@ function showQuestion(question) {
             answerButtons.appendChild(button)
         } else {
             timeLeft - 5
-        }
+        };
+        nextButton.classList.remove('hide')
     });
 };
 
@@ -84,7 +82,6 @@ function selectAnswer(e) {
     if (shuffleQuestions.length > currentQuestionIndex + 1) {
         nextButton.classList.remove('hide') 
     } else {
-        quizFinBtn.classList.remove("hide")
         startButton.classList.remove('hide')
     }
 }
@@ -105,15 +102,15 @@ function clearStatusClass(element) {
     element.classList.remove('wrong');
 };
 
-quizFinBtn.addEventListener('click', () => {
-    if (score >= 0) {
-        score.classList.add('saveScore') ;
-        localStorage.setItem("text" , 'initials');
-        localStorage.setitem('score-text', 'score');
-        console.log(score);
-    }
-    return "Your score has been added" 
-});
+////quizFinBtn.addEventListener('click', () => {
+  //  if (score >= 0) {
+  //      score.classList.add('saveScore') ;
+  //      localStorage.setItem("text" , 'initials');
+  //      localStorage.setitem('score-text', 'score');
+  //      console.log(score);
+  //  }
+  //  return "Your score has been added" 
+//});
 
 let questions = [
     {

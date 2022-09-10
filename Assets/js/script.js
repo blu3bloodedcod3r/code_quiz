@@ -4,11 +4,12 @@ const questionContainer = document.getElementById('question-cont')
 const questionEl = document.getElementById('question')
 const answerButtons = document.getElementById('answ-btn')
 const quizFinish = document.getElementsByClassName("quiz-finish")
+const quizFinBtn = document.getElementsById('quiz-fin')
 const saveScore = document.getElementsByClassName("saveScore")
-const timeLeft = timer(timeLeft)
+const timeLeft = timer(timeLeft);
 
-let shuffleQuestions, currentQuestionIndex 
-let score = 0
+let shuffleQuestions, currentQuestionIndex ;
+let score = 0;
 
 startButton.addEventListener('click', startGame);
 nextButton.addEventListener('click', () => {
@@ -17,15 +18,12 @@ nextButton.addEventListener('click', () => {
 })
 
 function startGame() {
-    score = 0
     currentQuestionIndex = 0
     startButton.classList.add('hide')
     shuffleQuestions = questions.sort(() => Math.random() - .5)
     questionContainer.classList.remove('hide')
     setNextQuestion()
 };
-
-
 
 function setNextQuestion() {
     resetState();
@@ -40,7 +38,8 @@ function showQuestion(question) {
         button.innerText = answer.text;
         button.classList.add('btn');
         if (answer.correct) {
-            button.dataset.correct = answer.correct
+            score++;
+            button.dataset.correct = answer.correct;
             button.addEventListener('click', selectAnswer)
             answerButtons.appendChild(button)
         } else {
@@ -68,7 +67,7 @@ function selectAnswer(e) {
     if (shuffleQuestions.length > currentQuestionIndex + 1) {
         nextButton.classList.remove('hide') 
     } else {
-        startButton.innerText = 'Restart'
+        quizFinBtn.classList.remove("hide")
         startButton.classList.remove('hide')
     }
 }
@@ -76,8 +75,9 @@ function selectAnswer(e) {
 function setStatusClass(element, correct) {
     clearStatusClass(element)
     if (correct) {
-        score ++
-        element.classList.add('correct') 
+        element.classList.add('correct');
+        score ++; 
+        localStorage.setItem('score-text')
     } else {
         element.classList.add('wrong')
     }
@@ -87,14 +87,6 @@ function clearStatusClass(element) {
     element.classList.remove('correct')
     element.classList.remove('wrong')
 }
-
-//function scoreCorrect() {
-//    score = 0
-//    for (correct in answers) {
-//        score++
-//        localStorage.setItem('score-text')
-//    }
-//}
 
 let questions = [
     {

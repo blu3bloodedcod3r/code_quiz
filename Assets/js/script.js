@@ -4,9 +4,8 @@ const questionContainer = document.getElementById('question-cont')
 const questionEl = document.getElementById('question')
 const answerButtons = document.getElementById('answ-btn')
 const quizFinish = document.getElementsByClassName("quiz-finish")
-const quizFinBtn = document.getElementsById('quiz-fin')
 const saveScore = document.getElementsByClassName("saveScore")
-const timeLeft = timer(timeLeft);
+const quizFinBtn = document.getElementById('quiz-finBtn');
 
 let shuffleQuestions, currentQuestionIndex ;
 let score = 0;
@@ -15,10 +14,13 @@ startButton.addEventListener('click', startGame);
 nextButton.addEventListener('click', () => {
     currentQuestionIndex++
     setNextQuestion()
-})
+});
+
+quizFinBtn.addEventListener('click', highScores);
 
 function startGame() {
     currentQuestionIndex = 0
+    //console.log('started')
     startButton.classList.add('hide')
     shuffleQuestions = questions.sort(() => Math.random() - .5)
     questionContainer.classList.remove('hide')
@@ -67,6 +69,8 @@ function timer() {
     setTimeOut(timeInterval)
 }
 
+const timeLeft = timer(timeLeft);
+
 function resetState() {
     clearStatusClass(document.body)
     nextButton.classList.add('hide')
@@ -106,6 +110,10 @@ function clearStatusClass(element) {
     element.classList.remove('wrong')
 }
 
+function highScores(score) {
+    localStorage.setItem("text" , 'initials')
+    localStorage.setitem('score-text', 'score')
+}
 let questions = [
     {
         question: "Who invented JavaScript?",

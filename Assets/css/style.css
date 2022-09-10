@@ -102,9 +102,8 @@ body.wrong {
 }
 
 .timer {
-    display:flex;
-    justify-content: flex-start;
-    align-items: flex-start;
+    justify-content: center;
+    align-items: center;
     width: 100px;
     height: 30px;
     color: black;

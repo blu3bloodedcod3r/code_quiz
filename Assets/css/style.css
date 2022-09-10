@@ -23,6 +23,7 @@ body {
 nav {
     color: orange;
     align-items: flex-start;
+    justify-items: top;
 }
 
 body.correct {
@@ -76,7 +77,7 @@ body.wrong {
     font-size: 1.5rem;
     font-weight: bold;
     padding: 10px 10px;
-    align-items: center;
+    display: flex;
 }
 
 .controls {
@@ -91,38 +92,32 @@ body.wrong {
 
 .quiz-finish {
     display: none;
-    justify-content: space-around;
-    align-items: start;
+    justify-content: flex-end;
+    align-items: flex-end;
     width: 100px;
-    height: 30px;
+    height: 100px;
     color: orange;
     font-weight: bold;
     border-radius: 5px;
-    padding 0 8px;
+    padding: 0 8px;
     background-color: aliceblue;
-}
-
-.recorded_scores {
-    display: block;
-    color: orange;
-    justify-content: flex-end;
-    align-items: top;
 }
 
 .timer {
     display:flex;
-    justify-content: space-around;
-    align-items: start;
+    justify-content: flex-start;
+    align-items: flex-start;
     width: 100px;
     height: 30px;
     color: orange;
     font-weight: bold;
     border-radius: 5px;
-    padding 0 8px;
+    padding: 0 8px;
     background-color: aliceblue;
 }
 
 .time-text {
+    display: flex;
     font-weight: 300;
     font-size: 15px;
     user-select: none;

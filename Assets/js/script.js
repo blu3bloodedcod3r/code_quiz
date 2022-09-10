@@ -3,10 +3,11 @@ const nextButton = document.getElementById('next-button')
 const questionContainer = document.getElementById('question-cont')
 const questionEl = document.getElementById('question')
 const answerButtons = document.getElementById('answ-btn')
-const scorePoints = 100
-const maxQuestions = 3
+const quizFinish = document.getElementsByClassName("quiz-finish")
+const saveScore = document.getElementsByClassName("saveScore")
+const timeLeft = timer(timeLeft)
 
-let shuffleQuestions, currentQuestionIndex
+let shuffleQuestions, currentQuestionIndex 
 let score = 0
 
 startButton.addEventListener('click', startGame);
@@ -17,12 +18,14 @@ nextButton.addEventListener('click', () => {
 
 function startGame() {
     score = 0
+    currentQuestionIndex = 0
     startButton.classList.add('hide')
     shuffleQuestions = questions.sort(() => Math.random() - .5)
-    currentQuestionIndex = 0
     questionContainer.classList.remove('hide')
     setNextQuestion()
 };
+
+
 
 function setNextQuestion() {
     resetState();
@@ -30,6 +33,7 @@ function setNextQuestion() {
 };
 
 function showQuestion(question) {
+
     questionEl.innerText = question.question
     question.answers.forEach(answer => {
         const button = document.createElement('button')
@@ -37,10 +41,12 @@ function showQuestion(question) {
         button.classList.add('btn');
         if (answer.correct) {
             button.dataset.correct = answer.correct
-            score++
+            button.addEventListener('click', selectAnswer)
+            answerButtons.appendChild(button)
+        } else {
+            timeLeft - 5
         }
-        button.addEventListener('click', selectAnswer)
-        answerButtons.appendChild(button)
+        
     });
 };
 
@@ -62,7 +68,7 @@ function selectAnswer(e) {
     if (shuffleQuestions.length > currentQuestionIndex + 1) {
         nextButton.classList.remove('hide') 
     } else {
-        startButton.innerText = 'Submit'
+        startButton.innerText = 'Restart'
         startButton.classList.remove('hide')
     }
 }
@@ -70,6 +76,7 @@ function selectAnswer(e) {
 function setStatusClass(element, correct) {
     clearStatusClass(element)
     if (correct) {
+        score ++
         element.classList.add('correct') 
     } else {
         element.classList.add('wrong')
@@ -81,13 +88,13 @@ function clearStatusClass(element) {
     element.classList.remove('wrong')
 }
 
-function scoreCorrect() {
-    score = 0
-    for (correct in answers) {
-        score++
-        localStorage.setItem('score-text')
-    }
-}
+//function scoreCorrect() {
+//    score = 0
+//    for (correct in answers) {
+//        score++
+//        localStorage.setItem('score-text')
+//    }
+//}
 
 let questions = [
     {

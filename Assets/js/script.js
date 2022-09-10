@@ -1,11 +1,11 @@
-const startButton = document.getElementById('start-button')
-const nextButton = document.getElementById('next-button')
-const questionContainer = document.getElementById('question-cont')
-const questionEl = document.getElementById('question')
-const answerButtons = document.getElementById('answ-btn')
-const quizFinish = document.getElementsByClassName("quiz-finish")
-const saveScore = document.getElementsByClassName("saveScore")
-const quizFinBtn = document.getElementById('quiz-finBtn');
+const startButton = document.getElementById('start-button');
+const nextButton = document.getElementById('next-button');
+const questionContainer = document.getElementById('question-cont');
+const questionEl = document.getElementById('question');
+const answerButtons = document.getElementById('answ-btn');
+const quizFinish = document.getElementsByClassName("quiz-finish");
+const saveScore = document.getElementsByClassName("saveScore");
+
 
 let shuffleQuestions, currentQuestionIndex ;
 let score = 0;
@@ -16,15 +16,15 @@ nextButton.addEventListener('click', () => {
     setNextQuestion()
 });
 
-quizFinBtn.addEventListener('click', highScores);
-
 function startGame() {
     currentQuestionIndex = 0
     //console.log('started')
     startButton.classList.add('hide')
+    nextButton.classList.remove('hide')
     shuffleQuestions = questions.sort(() => Math.random() - .5)
     questionContainer.classList.remove('hide')
     setNextQuestion()
+    showQuestion();
     timer();
 };
 
@@ -34,7 +34,6 @@ function setNextQuestion() {
 };
 
 function showQuestion(question) {
-
     questionEl.innerText = question.question
     question.answers.forEach(answer => {
         const button = document.createElement('button')
@@ -51,25 +50,24 @@ function showQuestion(question) {
         
     });
 };
+const timeLeft = timer();
 
 function timer() {
-    timeLeft = 30;
+    timer = 30;
 
         var timeInterval = setInterval(function() {
-            timeLeft--;
-            console.log(timeLeft)
-            document.querySelector('.time-text').innerHTML = "Time Left: " + timeLeft
+            timer--;
+            //console.log(timer)
+            document.querySelector('.time-text').innerHTML = "Time Left: " + timer
 
-            if (timeLeft === 0) {
+            if (timer === 0) {
+                setTimeOut(timer)
                 clearInterval(timeLeft);
                 localStorage.setItem(".saveScore").innerHTML = 'Enter your initals'
-                return quizFinish && saveScore
+                return quizFinishBtn && saveScore
             };      
     }, 1000)
-    setTimeOut(timeInterval)
 }
-
-const timeLeft = timer(timeLeft);
 
 function resetState() {
     clearStatusClass(document.body)
@@ -110,7 +108,13 @@ function clearStatusClass(element) {
     element.classList.remove('wrong')
 }
 
+const quizFinBtn = document.getElementById('quiz-finBtn');
+quizFinBtn.addEventListener('click', () => {
+    highScore(score)
+});
+
 function highScores(score) {
+    score.classList.add('saveScore') 
     localStorage.setItem("text" , 'initials')
     localStorage.setitem('score-text', 'score')
 }

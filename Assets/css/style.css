@@ -115,8 +115,9 @@ body.wrong {
 }
 
 .time-text {
-    font-weight: 300;
+    font-weight: bold;
     font-size: 15px;
+    align-items: center;
 }
 
 #quiz-fin {

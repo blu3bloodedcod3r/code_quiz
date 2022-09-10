@@ -7,8 +7,7 @@ const quizFinish = document.getElementsByClassName("quiz-finish");
 const saveScore = document.getElementsByClassName("saveScore");
 
 
-let shuffleQuestions, currentQuestionIndex ;
-let score = 0;
+let shuffleQuestions, currentQuestionIndex;
 
 startButton.addEventListener('click', startGame);
 nextButton.addEventListener('click', () => {
@@ -16,14 +15,29 @@ nextButton.addEventListener('click', () => {
     setNextQuestion()
 });
 
+function timer() {
+    timeLeft = 31;
+
+        var timer = setInterval(function() {
+            timeLeft--;
+            //console.log(timer)
+            document.querySelector('.time-text').innerHTML = "Time Left: " + timeLeft
+        }, 1000);     
+    if (timeLeft === 0) {
+        clearInterval(timer);
+    }; 
+    startGame();
+}
+
 function startGame() {
-    currentQuestionIndex = 0
+    
     //console.log('started')
     startButton.classList.add('hide')
-    nextButton.classList.remove('hide')
-    shuffleQuestions = questions.sort(() => Math.random() - .5)
     questionContainer.classList.remove('hide')
-    setNextQuestion()
+    setNextQuestion();
+    currentQuestionIndex = 0
+    shuffleQuestions = questions.sort(() => Math.random() - .5)
+    nextButton.classList.remove('hide')
     showQuestion();
     timer();
 };
@@ -32,6 +46,8 @@ function setNextQuestion() {
     resetState();
     showQuestion(shuffleQuestions[currentQuestionIndex])
 };
+
+let score = 0;
 
 function showQuestion(question) {
     questionEl.innerText = question.question
@@ -47,27 +63,8 @@ function showQuestion(question) {
         } else {
             timeLeft - 5
         }
-        
     });
 };
-const timeLeft = timer();
-
-function timer() {
-    timer = 30;
-
-        var timeInterval = setInterval(function() {
-            timer--;
-            //console.log(timer)
-            document.querySelector('.time-text').innerHTML = "Time Left: " + timer
-
-            if (timer === 0) {
-                setTimeOut(timer)
-                clearInterval(timeLeft);
-                localStorage.setItem(".saveScore").innerHTML = 'Enter your initals'
-                return quizFinishBtn && saveScore
-            };      
-    }, 1000)
-}
 
 function resetState() {
     clearStatusClass(document.body)
@@ -97,27 +94,27 @@ function setStatusClass(element, correct) {
     if (correct) {
         element.classList.add('correct');
         score ++; 
-        localStorage.setItem('score-text')
+        localStorage.setItem('score-text');
     } else {
-        element.classList.add('wrong')
+        element.classList.add('wrong');
     }
-}
+};
 
 function clearStatusClass(element) {
-    element.classList.remove('correct')
-    element.classList.remove('wrong')
-}
+    element.classList.remove('correct');
+    element.classList.remove('wrong');
+};
 
-const quizFinBtn = document.getElementById('quiz-finBtn');
 quizFinBtn.addEventListener('click', () => {
-    highScore(score)
+    if (score >= 0) {
+        score.classList.add('saveScore') ;
+        localStorage.setItem("text" , 'initials');
+        localStorage.setitem('score-text', 'score');
+        console.log(score);
+    }
+    return "Your score has been added" 
 });
 
-function highScores(score) {
-    score.classList.add('saveScore') 
-    localStorage.setItem("text" , 'initials')
-    localStorage.setitem('score-text', 'score')
-}
 let questions = [
     {
         question: "Who invented JavaScript?",
@@ -144,4 +141,4 @@ let questions = [
             { text: "ESLint", correct: true}
       ]
     }
-]
+];

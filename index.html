@@ -28,7 +28,7 @@
         </section>
 
         <div class="controls">
-            <button id="start-button" class="start-button btn">Start</button>
+            <button id="start-button" class="start-button btn" onclick="timer(), showQuestion()">Start</button>
             <button id="next-button" class="next-button btn hide">Next</button>
         </div>
     
@@ -37,8 +37,8 @@
             <div class="score-text">Your Score: 00</div>
             <div class="saveScore">
                 <label for ="">Enter Initials:</label>
-                <input type="text">
-                    <button id="quiz-finBtn btn col-sm-3" class="btn">Submit</button>
+                <input type="text" for = ''>
+                    <button id="quiz-finBtn btn col-sm-3" class="btn" onlcick="highScores()">Submit</button>
             </div>
         </section>
         

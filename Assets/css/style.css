@@ -12,12 +12,18 @@ body {
     --hue: var(--hue-neutral);
     padding: 0;
     margin:0;
-    display: flex;
+    display: grid;
     justify-content: center;
     align-items: center;
     width: 100vw;
     height: 100vh;
     background-color: hsl(var(--hue), 100%, 20%);
+}
+
+nav {
+    color: orange;
+    align-items: flex-start;
+    justify-items: top;
 }
 
 body.correct {
@@ -29,7 +35,7 @@ body.wrong {
 }
 
 .quiz-container {
-    width: 800px;
+    width: 600px;
     max-width: 80%;
     background-color: lightblue;
     border-radius: 5px;
@@ -70,7 +76,7 @@ body.wrong {
 .start-button, .next-button {
     font-size: 1.5rem;
     font-weight: bold;
-    padding: 10px 15px;
+    padding: 10px 10px;
 }
 
 .controls {
@@ -84,20 +90,41 @@ body.wrong {
 }
 
 .quiz-finish {
-    display: none;
-}
-
-.recorded_scores {
-    display: block;
-    color: orange;
-    justify-content: flex-end;
-    align-items: top;
-}
-
-.timer .time-sec{
-    display:flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
+    width: 200px;
+    height: 100px;
     color: black;
     font-weight: bold;
+    border-radius: 5px;
+    padding: 0 8px;
+    background-color: aliceblue;
+}
+
+.timer {
+    display:flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100px;
+    height: 30px;
+    color: black;
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 0 8px;
+    background-color: aliceblue;
+}
+
+.time-text {
+    font-weight: bold;
+    font-size: 15px;
+    align-items: center;
+}
+
+#quiz-fin {
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 10px 10px;
+    display: grid;
+    height: 200;
+    width: 200;
 }

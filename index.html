@@ -6,19 +6,16 @@
         <link href="Assets/css/style.css" rel="stylesheet">
         <title>Quiz time</title>
     </head>
+
     <body>
         <nav>
-            <section class="recorded_scores">
-                <h3>Recorded Scores:</h3>
-                <ol>
-    
-                </ol>
-                <header>JavaScript Quiz</header>
-                <p class="timer">Timer: </p> 
-                <p class="time-sec">30</p>
-            </section>
-        </nav>
-        <section class="quiz-container">
+            <header>JavaScript Quiz</header>
+            <div class="timer col-sm-3">
+                <div class="time-text"></div>
+            </div>     
+        </nav> 
+
+        <section class="quiz-container col-med-4">
             <div id="question-cont" class="hide">
                 <div id="question">Question</div>
                 <section id="answ-btn" class="btn-grid">
@@ -28,23 +25,23 @@
                     <button class="btn">Answer 4</button>
                 </section>
             </div>
-        
-            <div class="controls">
-                <button id="start-button" class="start-button btn">Start</button>
-                <button id="next-button" class="next-button btn hide">Next</button>
-            </div>
         </section>
 
-        <section class = "quiz-finish">
+        <div class="controls">
+            <button id="start-button" class="start-button btn" onclick="timer(), showQuestion()">Start</button>
+            <button id="next-button" class="next-button btn hide">Next</button>
+        </div>
+    
+        <section class="quiz-finish col-med-4">
             <h2>Quiz Done!</h2>
-            <p>Your Score: 00</p>
-            <div>
+            <div class="score-text">Your Score: 00</div>
+            <div class="saveScore">
                 <label for ="">Enter Initials:</label>
-                <input type="text">
-                <button>Submit</button>
+                <input type="text" for = ''>
+                    <button id="quiz-finBtn btn col-sm-3" class="btn" onlcick="highScores()">Submit</button>
             </div>
         </section>
         
-        <script defer src="Assets/js/script.js"></script>
+        <script src="Assets/js/script.js"></script>
     </body>
 </html>

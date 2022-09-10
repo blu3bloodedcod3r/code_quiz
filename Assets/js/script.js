@@ -1,34 +1,53 @@
-const startButton = document.getElementById('start-button')
-const nextButton = document.getElementById('next-button')
-const questionContainer = document.getElementById('question-cont')
-const questionEl = document.getElementById('question')
-const answerButtons = document.getElementById('answ-btn')
-const scores = document.getElementById('recorded_scores')
+const startButton = document.getElementById('start-button');
+const nextButton = document.getElementById('next-button');
+const questionContainer = document.getElementById('question-cont');
+const questionEl = document.getElementById('question');
+const answerButtons = document.getElementById('answ-btn');
+const quizFinish = document.getElementsByClassName("quiz-finish");
+const saveScore = document.getElementsByClassName("saveScore");
 
-let shuffleQuestions, currentQuestionIndex
+
+let shuffleQuestions, currentQuestionIndex;
 
 startButton.addEventListener('click', startGame);
 nextButton.addEventListener('click', () => {
     currentQuestionIndex++
     setNextQuestion()
-})
+});
+
+function timer() {
+    timeLeft = 31;
+
+        var timer = setInterval(function() {
+            timeLeft--;
+            //console.log(timer)
+            document.querySelector('.time-text').innerHTML = "Time Left: " + timeLeft
+        }, 1000);     
+    if (timeLeft === 0) {
+        clearInterval(timer);
+    }; 
+    startGame();
+}
 
 function startGame() {
+    
+    //console.log('started')
     startButton.classList.add('hide')
-    shuffleQuestions = questions.sort(() => Math.random() - .5)
-    currentQuestionIndex = 0
     questionContainer.classList.remove('hide')
-    setNextQuestion()
+    setNextQuestion();
+    currentQuestionIndex = 0
+    shuffleQuestions = questions.sort(() => Math.random() - .5)
+    nextButton.classList.remove('hide')
+    showQuestion();
+    timer();
 };
-
-function timerStart(){
-    startButton('clicked', setNextQuestion(), 30000)
-}
 
 function setNextQuestion() {
     resetState();
     showQuestion(shuffleQuestions[currentQuestionIndex])
 };
+
+let score = 0;
 
 function showQuestion(question) {
     questionEl.innerText = question.question
@@ -37,10 +56,13 @@ function showQuestion(question) {
         button.innerText = answer.text;
         button.classList.add('btn');
         if (answer.correct) {
-            button.dataset.correct = answer.correct
+            score++;
+            button.dataset.correct = answer.correct;
+            button.addEventListener('click', selectAnswer)
+            answerButtons.appendChild(button)
+        } else {
+            timeLeft - 5
         }
-        button.addEventListener('click', selectAnswer)
-        answerButtons.appendChild(button)
     });
 };
 
@@ -56,13 +78,13 @@ function selectAnswer(e) {
     const chosenButton = e.target
     const correct = chosenButton.dataset.correct
     setStatusClass(document.body, correct)
-    Array.from(answers).forEach(button => {
+    Array.from(answerButtons).forEach(button => {
         setStatusClass(button, button.dataset.correct)
     })
     if (shuffleQuestions.length > currentQuestionIndex + 1) {
         nextButton.classList.remove('hide') 
     } else {
-        startButton.innerText = 'Restart'
+        quizFinBtn.classList.remove("hide")
         startButton.classList.remove('hide')
     }
 }
@@ -70,26 +92,30 @@ function selectAnswer(e) {
 function setStatusClass(element, correct) {
     clearStatusClass(element)
     if (correct) {
-        element.classList.add('correct') 
+        element.classList.add('correct');
+        score ++; 
+        localStorage.setItem('score-text');
     } else {
-        element.classList.add('wrong')
+        element.classList.add('wrong');
     }
-}
-
+};
 
 function clearStatusClass(element) {
-    element.classList.remove('correct')
-    element.classList.remove('wrong')
-}
+    element.classList.remove('correct');
+    element.classList.remove('wrong');
+};
 
-function scoreCorrect() {
-    scored = 0
-    for (correct in answers) {
-        scored++
+quizFinBtn.addEventListener('click', () => {
+    if (score >= 0) {
+        score.classList.add('saveScore') ;
+        localStorage.setItem("text" , 'initials');
+        localStorage.setitem('score-text', 'score');
+        console.log(score);
     }
-}
+    return "Your score has been added" 
+});
 
-const questions = [
+let questions = [
     {
         question: "Who invented JavaScript?",
         answers: [
@@ -115,4 +141,4 @@ const questions = [
             { text: "ESLint", correct: true}
       ]
     }
-]
+];

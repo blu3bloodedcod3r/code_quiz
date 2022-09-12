@@ -35,7 +35,7 @@ body.wrong {
     --hue: var(--hue-wrong);
 }
 
-.quiz-container {
+.quiz-container, .quiz-finish {
     width: 600px;
     max-width: 80%;
     background-color: lightblue;
@@ -121,10 +121,15 @@ body.wrong {
 }
 
 #quiz-fin {
+    display: contents;
     font-size: 1.5rem;
     font-weight: bold;
     padding: 10px 10px;
     display: grid;
     height: 200;
     width: 200;
+}
+
+@media only screen and (max-width: 678px) {
+    padding: 10px;
 }

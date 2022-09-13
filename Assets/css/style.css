@@ -35,7 +35,7 @@ body.wrong {
     --hue: var(--hue-wrong);
 }
 
-.quiz-container, .quiz-finish {
+.quiz-container, .quizFinish {
     width: 600px;
     max-width: 80%;
     background-color: lightblue;
@@ -90,7 +90,7 @@ body.wrong {
     display: none;
 }
 
-.quiz-finish {
+.quizFinish {
     justify-content: center;
     align-items: center;
     width: 200px;
@@ -120,7 +120,7 @@ body.wrong {
     align-items: center;
 }
 
-#quiz-fin {
+#quizFin {
     display: contents;
     font-size: 1.5rem;
     font-weight: bold;

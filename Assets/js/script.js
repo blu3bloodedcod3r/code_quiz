@@ -5,10 +5,12 @@ const questionEl = document.getElementById('question');
 const answerButtons = document.getElementById('answ-btn');
 const quizFinish = document.getElementById("quizFinish");
 const saveScoreName = document.getElementById("saveScoreName");
+console.log(saveScoreName)
 
-
-
+let timeLeft ;
 let score = 0;
+const savedScores = localStorage.getItem('score');
+
 let shuffleQuestions;
 let currentQuestionIndex = 0;
 
@@ -19,7 +21,7 @@ nextButton.addEventListener('click', () => {
 });
 
 function timer() {
-    timeLeft = 15;
+    timeLeft = 30;
 
         var timer = setInterval(function() {
             timeLeft--;
@@ -47,13 +49,17 @@ function startGame() {
 
 function setNextQuestion() {
     resetState();
-    showQuestion(shuffleQuestions[currentQuestionIndex]);
+    if(currentQuestionIndex < shuffleQuestions.length) {
+        showQuestion(shuffleQuestions[currentQuestionIndex]);
+    } else {
+        clearInterval(timer);
+        endGame();
+    }
 };
 
-
-
 function showQuestion(question) {
-    questionEl.innerText = question.question;
+    questionEl.innerHTML = question.question;
+    console.log(question.question)
     question.answers.forEach(answer => {
         const button = document.createElement('button');
         button.innerText = answer.text;
@@ -104,26 +110,29 @@ function clearStatusClass(element) {
 };
 
 function endGame () {
-
+    console.log(timeLeft)
     questionContainer.classList.add('hide');
     startButton.classList.add('hide');
     nextButton.classList.add('hide');
     quizFinish.classList.remove('hide');
 
-    const enteredScore = JSON.stringify('score');
-    const saveScoreName = JSON.stringify('saveScoreName');
-    
-    localStorage.setItem('saveScoreName', saveScoreName);
-    
+    const userName = saveScoreName.value;
+    console.log(userName)
+    const newScore = {
+        initials: userName,
+        score: timeLeft
+    }
+    var highScoresArray = JSON.parse(localStorage.getItem('highScores'))
+    if (!highScoresArray) {
+        highScoresArray = [];
+    }
+    highScoresArray.push(newScore)
 
-    localStorage.setItem("enteredScore", score);
-    
-    
+    localStorage.setItem('highScores', JSON.stringify(highScoresArray));
+   
     const quizFinBtn = document.getElementById('quizFinBtn');
-    quizFinBtn.addEventListener('onclick', () => {
-        
-        const savedScoreNames= localStorage.getItem('saveScoreName');
-        const savedScores = localStorage.getItem(score);
+    quizFinBtn.addEventListener('click', () => {
+
         alert("Your name and score has been entered");
     });
 };

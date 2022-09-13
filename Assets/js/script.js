@@ -5,10 +5,9 @@ const questionEl = document.getElementById('question');
 const answerButtons = document.getElementById('answ-btn');
 const quizFinish = document.getElementById("quizFinish");
 const saveScoreName = document.getElementById("saveScoreName");
-console.log(saveScoreName)
+//console.log(saveScoreName)
 
 let timeLeft ;
-let score = 0;
 const savedScores = localStorage.getItem('score');
 
 let shuffleQuestions;
@@ -38,8 +37,7 @@ function timer() {
 
 function startGame() {
     startButton.classList.add('hide')
-    questionContainer.classList.remove('hide')
-    currentQuestionIndex = 0
+    questionContainer.classList.remove('hide');
     shuffleQuestions = questions.sort(() => Math.random() - .5)
     setNextQuestion();
     nextButton.classList.remove('hide')
@@ -58,14 +56,15 @@ function setNextQuestion() {
 };
 
 function showQuestion(question) {
+    //console.log(question)
     questionEl.innerHTML = question.question;
-    console.log(question.question)
+    //console.log(question.question)
     question.answers.forEach(answer => {
+        //console.log(answer)
         const button = document.createElement('button');
         button.innerText = answer.text;
         button.classList.add('btn');
         if (answer.correct) {
-            score++;
             button.dataset.correct = answer.correct;
         };
         button.addEventListener('click', selectAnswer);
@@ -83,25 +82,23 @@ function resetState() {
 };
 
 function selectAnswer(e) {
-    const chosenButton = e.target
-    const correct = chosenButton.dataset.correct
-    setStatusClass(document.body, correct)
-    Array.from(answerButtons).forEach(button => {
-        setStatusClass(button, button.dataset.correct)
-    })
-    if (shuffleQuestions.length > currentQuestionIndex + 1) {
-        nextButton.classList.remove('hide') 
-    };
+    const chosenButton = e.target;
+    const correct = chosenButton.dataset.correct;
+    setStatusClass(document.body, correct);
+    if (!correct) {
+        if (!correct) {
+            timeLeft -= 5
+        };
+    }
 };
 
 function setStatusClass(element, correct) {
     clearStatusClass(element)
     if (correct) {
-        score++;
         element.classList.add('correct');
     } else {
         element.classList.add('wrong');
-    }
+    };
 };
 
 function clearStatusClass(element) {
